@@ -1,3 +1,3 @@
 export * from './DatePicker';
-export * from './DropdownCheckList';
 export * from './EmojiPicker';
+export * from './MultiSelect';
