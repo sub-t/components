@@ -1,8 +1,8 @@
 import { WithCss } from '@/types/common';
 import { ComponentProps, forwardRef, useId } from 'react';
-import { ErrorMessage } from './ErrorMessage';
-import { FormLabel } from './FormLabel';
-import { Input } from './Input';
+import { ErrorMessage } from '../ErrorMessage';
+import { FormLabel } from '../FormLabel';
+import { Input } from '../Input';
 
 type Props = ComponentProps<typeof Input> &
   WithCss & {
