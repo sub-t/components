@@ -22,7 +22,6 @@ export const DropdownMenuCheckboxItem = forwardRef<
 });
 
 const StyledCheckboxItem = styled(CheckboxItem, {
-  all: 'unset',
   fontSize: 13,
   lineHeight: 1,
   color: violet.violet11,

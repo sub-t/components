@@ -20,12 +20,12 @@ type Props = ComponentPropsWithoutRef<typeof Content> &
   };
 
 export const DropdownMenu = forwardRef<ElementRef<typeof Content>, Props>(
-  function DropdownMenu({ children, trigger, forceMount, ...props }, ref) {
+  function DropdownMenu({ children, trigger, ...props }, ref) {
     return (
       <Root>
         <Trigger asChild>{trigger}</Trigger>
-        <Portal forceMount={forceMount}>
-          <DropdownMenuContent {...props} ref={ref} forceMount={forceMount}>
+        <Portal>
+          <DropdownMenuContent {...props} ref={ref}>
             {children}
             <DropdownMenuArrow />
           </DropdownMenuContent>
