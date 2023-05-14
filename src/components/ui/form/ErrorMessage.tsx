@@ -1,4 +1,5 @@
 import { WithCss } from '@/types/common';
+import { red } from '@radix-ui/colors';
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
 import { styled } from 'stitches.config';
 
@@ -12,4 +13,9 @@ export const ErrorMessage = forwardRef<HTMLParagraphElement, Props>(
   },
 );
 
-export const StyledErrorMessage = styled('p', {});
+export const StyledErrorMessage = styled('p', {
+  flexGrow: 1,
+  marginTop: '0.25rem',
+  fontSize: '0.85rem',
+  color: red.red10,
+});
