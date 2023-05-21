@@ -1,30 +1,38 @@
 import { WithCss } from '@/types/common';
-import { violet } from '@radix-ui/colors';
-import { Arrow, Content, Portal, Root, Trigger } from '@radix-ui/react-popover';
-import React from 'react';
+import { Content, Portal, Root, Trigger } from '@radix-ui/react-popover';
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  ReactNode,
+  forwardRef,
+} from 'react';
 import { keyframes, styled } from 'stitches.config';
 
-type Props = React.ComponentPropsWithoutRef<typeof Content> &
+type Props = ComponentPropsWithoutRef<typeof Content> &
   WithCss & {
-    trigger: React.ReactNode;
+    trigger: ReactNode;
   };
 
-export const Popover = React.forwardRef<
-  React.ElementRef<typeof Content>,
-  Props
->(function PopoverDemo({ children, trigger, forceMount, ...props }, ref) {
-  return (
-    <Root>
-      <Trigger asChild>{trigger}</Trigger>
-      <Portal forceMount={forceMount}>
-        <PopoverContent {...props} ref={ref} forceMount={forceMount}>
-          {children}
-          <PopoverArrow />
-        </PopoverContent>
-      </Portal>
-    </Root>
-  );
-});
+export const Popover = forwardRef<ElementRef<typeof Content>, Props>(
+  function Popover({ children, trigger, forceMount, ...props }, ref) {
+    return (
+      <Root>
+        <Trigger asChild>{trigger}</Trigger>
+        <Portal forceMount={forceMount}>
+          <PopoverContent
+            {...props}
+            ref={ref}
+            forceMount={forceMount}
+            collisionPadding={16}
+            sideOffset={8}
+          >
+            {children}
+          </PopoverContent>
+        </Portal>
+      </Root>
+    );
+  },
+);
 
 const slideUpAndFade = keyframes({
   '0%': { opacity: 0, transform: 'translateY(2px)' },
@@ -62,10 +70,6 @@ const PopoverContent = styled(Content, {
     '&[data-side="left"]': { animationName: slideRightAndFade },
   },
   '&:focus': {
-    boxShadow: `hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px, 0 0 0 2px ${violet.violet7}`,
+    boxShadow: `hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px, 0 0 0 2px Black`,
   },
-});
-
-const PopoverArrow = styled(Arrow, {
-  fill: 'white',
 });
